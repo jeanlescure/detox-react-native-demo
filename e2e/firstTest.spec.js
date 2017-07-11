@@ -32,5 +32,26 @@ describe('Example', () => {
     await element(by.text('Sign Up')).atIndex(1).tap();
 
     await expect(element(by.text('Coming Soon'))).toBeVisible();
+
+    await element(by.id('logoutButton')).tap();
+  });
+
+  it('should allow user to log in', async () => {
+    await expect(element(by.id('loginButton'))).toBeVisible();
+    await element(by.id('loginButton')).tap();
+
+    await element(by.type('RCTTextField')).atIndex(1).tap();
+
+    // Type the Email
+    await element(by.type('RCTTextField')).atIndex(1).typeText('test@example.com');
+    // Type the Password
+    await element(by.type('RCTTextField')).atIndex(0).typeText('test1234');
+
+    // The keyboard occludes the Login button
+    // The following hides the keyboard
+    await element(by.text('Email')).tap();
+
+    // Now tap the Login button
+    await element(by.text('Login')).atIndex(2).tap();
   });
 });

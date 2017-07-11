@@ -42,7 +42,12 @@ class AppLaunch extends Component {
     // Show status bar on app launch
     StatusBar.setHidden(false, true);
 
-    Actions.authenticate({ type: 'reset' });
+    // - Try to authenticate based on existing token
+    this.props.login()
+      // Logged in, show index screen
+      .then(() => Actions.app({ type: 'reset' }))
+      // Not Logged in, show Login screen
+      .catch(() => Actions.authenticate({ type: 'reset' }));
   }
 
   render = () => (
@@ -54,7 +59,7 @@ class AppLaunch extends Component {
         <ActivityIndicator
           animating
           size={'large'}
-          color={'#C1C5C8'}
+          color={'#C1C8C5'}
         />
       </Image>
     </View>

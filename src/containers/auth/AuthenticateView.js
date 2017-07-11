@@ -49,7 +49,22 @@ class Authenticate extends Component {
 
       <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
         <View style={[AppStyles.flex1]}>
-          <Button testID={'signUpButton'}
+          <Button
+            testID={'loginButton'}
+            title={'Login'}
+            icon={{ name: 'lock' }}
+            onPress={Actions.login}
+            backgroundColor={'#CB009E'}
+          />
+        </View>
+      </View>
+
+      <Spacer size={10} />
+
+      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
+        <View style={[AppStyles.flex1]}>
+          <Button
+            testID={'signUpButton'}
             title={'Sign up'}
             icon={{ name: 'face' }}
             onPress={Actions.signUp}
