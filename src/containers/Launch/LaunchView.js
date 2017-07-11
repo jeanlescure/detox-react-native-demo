@@ -41,6 +41,8 @@ class AppLaunch extends Component {
   componentDidMount = () => {
     // Show status bar on app launch
     StatusBar.setHidden(false, true);
+
+    Actions.authenticate({ type: 'reset' });
   }
 
   render = () => (
