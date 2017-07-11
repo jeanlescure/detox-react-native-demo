@@ -31,9 +31,10 @@ describe('Example', () => {
     // Now tap the Sign Up button
     await element(by.text('Sign Up')).atIndex(1).tap();
 
-    await expect(element(by.text('Coming Soon'))).toBeVisible();
-
+    // Make sure the call to create the user actually succeeded and log out
+    await expect(element(by.id('logoutButton'))).toBeVisible();
     await element(by.id('logoutButton')).tap();
+    await expect(element(by.id('signUpButton'))).toBeVisible();
   });
 
   it('should allow user to log in', async () => {
@@ -51,7 +52,31 @@ describe('Example', () => {
     // The following hides the keyboard
     await element(by.text('Email')).tap();
 
-    // Now tap the Login button
+    // Now tap the Login button and make user user successfully logged in
     await element(by.text('Login')).atIndex(2).tap();
+    await expect(element(by.id('logoutButton'))).toBeVisible();
+  });
+
+  it('should show recipes', async () => {
+    // Make sure at least one card is loaded.
+    await expect(element(by.text('This is an Article'))).toBeVisible();
+  });
+
+  it('should let user browse and open recipes', async () => {
+    // Swipe left on the lunch recipes list view
+    await element(by.id('listingView1')).swipe('left', 'fast');
+
+    // Make sure at least one dinner recipe card is visible
+    await expect(element(by.text('Dummy text of the printing'))).toBeVisible();
+
+    // Scroll down
+    await element(by.id('listingView2')).scroll(200, 'down');
+
+    // Make sure next dinner recipe card is visible
+    await expect(element(by.text('Standard dummy text ever'))).toBeVisible();
+
+    // Tap the card and make sure the recipe is displayed
+    await element(by.text('Standard dummy text ever')).tap();
+    await expect(element(by.text('Ingredients'))).toBeVisible();
   });
 });

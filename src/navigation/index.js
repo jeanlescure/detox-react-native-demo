@@ -18,6 +18,7 @@ import { NavbarLogoutButton } from '@containers/ui/NavbarLogoutButton/NavbarLogo
 import AppLaunch from '@containers/Launch/LaunchContainer';
 import Placeholder from '@components/general/Placeholder';
 import AuthScenes from './auth';
+import TabsScenes from './tabs';
 
 const navbarProps = {
   ...AppConfig.navbarProps,
@@ -43,6 +44,9 @@ export default Actions.create(
 
     {/* Main App */}
     <Scene key={'app'} {...AppConfig.navbarProps} title={AppConfig.appName} hideNavBar={false} type={ActionConst.RESET}>
+      {/* Tabbar */}
+      {TabsScenes}
+
       {/* General */}
       <Scene
         key={'comingSoon'}
